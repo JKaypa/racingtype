@@ -5,7 +5,7 @@
     "scripts": {
         "esbuild": "node esbuild.config.mjs",
         "dev": "tsx watch src/server.ts",
-        "build": "tsc",
+        "build": "tsc && tsc-alias",
         "start": "node build/src/server.js",
         "format:check": "npx prettier --check \"**/*.{ts,mjs,css,md,html}\"",
         "format:fix": "npx prettier --write \"**/*.{ts,mjs,css,md,html}\""
@@ -21,6 +21,7 @@
         "esbuild": "0.23.0",
         "prettier": "3.1.1",
         "ts-node": "10.9.2",
+        "tsc-alias": "^1.8.16",
         "tsx": "4.15.6",
         "typescript": "5.3.3"
     }
