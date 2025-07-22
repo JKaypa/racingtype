@@ -2,7 +2,7 @@ import * as esbuild from 'esbuild';
 import { argv } from 'node:process'
 
 const isDev = argv.includes('--dev')
-const outdir = isDev ? './public/javascript' : '.build/public/javascript'
+const outdir = isDev ? './public/javascript' : './build/public/javascript'
 
 const options = {
     entryPoints: ['./public/typescript/game.ts', './public/typescript/signin.ts'],
