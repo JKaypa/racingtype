@@ -3,9 +3,10 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "esbuild": "node esbuild.config.mjs",
-        "dev": "tsx watch src/server.ts",
-        "build": "tsc && tsc-alias && npm run copy",
+        "bundle:dev": "node esbuild.config.mjs --dev",
+        "bundle:prod": "node esbuild.config.mjs --prod",
+        "dev": "npm run bundle:dev & tsx watch src/server.ts",
+        "build": "tsc && tsc-alias && npm run bundle:prod && npm run copy",
         "copy": "cp -r public/html public/styles build/public",
         "start": "node build/src/server.js",
         "format:check": "npx prettier --check \"**/*.{ts,mjs,css,md,html}\"",
