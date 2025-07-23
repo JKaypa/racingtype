@@ -7,14 +7,14 @@ const outdir = isDev ? './public/javascript' : './build/public/javascript'
 const options = {
     entryPoints: ['./public/typescript/game.ts', './public/typescript/signin.ts'],
     bundle: true,
-    minify: isDev,
+    minify: !isDev,
     outdir
 }
 
 if(isDev){
     const ctx = await esbuild.context(options)
     await ctx.watch()
-    console.info('esbuild is watching for changes...')
+    console.info('esbuild is watching for changes...\n')
 } else {
     await esbuild.build(options)
     console.info('esbuild build completed successfully');
