@@ -19,8 +19,7 @@ app.get('*', (req, res) => res.redirect('/signin'));
 socketHandler(socketIo);
 
 httpServer.listen(PORT, () => {
-    console.log(`- Listen server on port ${PORT}`);
-    console.log(`- App running on http://localhost:${PORT}`);
+    console.log(`App running on http://localhost:${PORT}`);
 });
 
 export default { app, httpServer };
