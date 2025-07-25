@@ -19,5 +19,5 @@
         "skipLibCheck": true
     },
     "include": ["./src/**/*", "./public/**/*", "./types/**/*"],
-    "exclude": ["public/typescript"]
+    
 }
