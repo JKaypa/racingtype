@@ -34,7 +34,7 @@ const startingGame = ({ secondsBefore, textId }: TimerBeforeStart) => {
     timer.className = 'timer';
     timer.innerText = secondsBefore.toString();
 
-    loadText(textId);
+    void loadText(textId);
 
     if (!secondsBefore) {
         timer.className = 'display-none';
