@@ -7,7 +7,7 @@ const outdir = isDev ? './public/javascript' : './build/public/javascript'
 const options= {
     entryPoints: ['./public/typescript/game.ts', './public/typescript/signin.ts'],
     bundle: true,
-    minify: isDev,
+    minify: !isDev,
     outdir
 }
 
