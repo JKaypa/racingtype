@@ -14,7 +14,7 @@ app.use(express.static(STATIC_PATH));
 
 routes(app);
 
-app.get('/*spat', (_req, res) => res.redirect('/signin'));
+app.get('/{*splat}', (_req, res) => res.redirect('/signin'));
 
 socketHandler(socketIo);
 
