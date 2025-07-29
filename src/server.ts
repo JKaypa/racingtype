@@ -14,12 +14,10 @@ app.use(express.static(STATIC_PATH));
 
 routes(app);
 
-app.get('/*spat', (req, res) => res.redirect('/signin'));
+app.get('/*spat', (_req, res) => res.redirect('/signin'));
 
 socketHandler(socketIo);
 
 httpServer.listen(PORT, () => {
     console.log(`App running on http://localhost:${PORT}`);
 });
-
-export default { app, httpServer };
