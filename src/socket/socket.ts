@@ -8,7 +8,7 @@ import {
     isRoomReady,
     resetUsers,
     roomsNotReady,
-    roomsUnderThreeUsers,
+    getRoomsBelowThreeUsers,
     roomsWithThreeUsers,
     timer
 } from './helpers/helpers.js';
@@ -26,7 +26,7 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
 
         usernames.add(username);
 
-        const rooms = roomsUnderThreeUsers(roomUsers);
+        const rooms = getRoomsBelowThreeUsers(roomUsers);
 
         socket.emit(Event.UPDATE_ROOMS, { rooms });
         socket.on(Event.JOIN_ROOM, roomName => {
@@ -42,7 +42,7 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
                     ? roomUsers.get(roomName)?.add(currentUser)
                     : roomUsers.set(roomName, new Set([currentUser]));
 
-                const rooms = roomsUnderThreeUsers(roomUsers);
+                const rooms = getRoomsBelowThreeUsers(roomUsers);
                 const roomsToRemove = roomsWithThreeUsers(roomUsers);
                 const usersJoined = [...(roomUsers.get(roomName) as Set<User>)];
 
@@ -70,7 +70,7 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
 
         socket.on(Event.RESTART, () => {
             resetUsers(roomUsers, currentRoom);
-            const rooms = roomsUnderThreeUsers(roomUsers);
+            const rooms = getRoomsBelowThreeUsers(roomUsers);
             socket.broadcast.emit(Event.UPDATE_ROOMS, { rooms });
         });
 

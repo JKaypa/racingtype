@@ -3,7 +3,7 @@ export {
     isRoomEmpty,
     isRoomReady,
     roomsNotReady,
-    roomsUnderThreeUsers,
+    getRoomsBelowThreeUsers,
     roomsWithThreeUsers
 } from './rooms-mapper/rooms-mapper.helper.js';
 export { timer } from './timer/timer.helper.js';

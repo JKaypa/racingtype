@@ -7,7 +7,8 @@ const roomsMapper = (roomsUsers: RoomsWithUsers) => {
 
     roomsUsers.forEach((users, name) => {
         if (users.size) {
-            isReady = [...users].every(user => user.ready === 'ready');
+            const usersInRoom = Array.from(users);
+            isReady = usersInRoom.every(user => user.ready === 'ready');
         }
 
         const room = {
@@ -30,7 +31,7 @@ const isRoomReady = (roomsUsers: RoomsWithUsers, roomName: string) => {
     return roomsMapper(roomsUsers).find(room => room.name === roomName)?.isReady;
 };
 
-const roomsUnderThreeUsers = (roomsUsers: RoomsWithUsers) => {
+const getRoomsBelowThreeUsers = (roomsUsers: RoomsWithUsers) => {
     return roomsNotReady(roomsUsers).filter(room => room.numberOfUsers < config.MAXIMUM_USERS_FOR_ONE_ROOM);
 };
 
@@ -50,4 +51,4 @@ const isRoomEmpty = (roomsUser: RoomsWithUsers, roomName: string) => {
     return !roomsMapper(roomsUser).find(room => room.name === roomName)?.numberOfUsers;
 };
 
-export { emptyRooms, isRoomEmpty, isRoomReady, roomsMapper, roomsNotReady, roomsUnderThreeUsers, roomsWithThreeUsers };
+export { emptyRooms, isRoomEmpty, isRoomReady, roomsMapper, roomsNotReady, getRoomsBelowThreeUsers, roomsWithThreeUsers };
