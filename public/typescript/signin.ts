@@ -7,7 +7,7 @@ if (username) {
 const submitButton = <HTMLButtonElement>document.getElementById('submit-button');
 const input = <HTMLInputElement>document.getElementById('username-input');
 
-const getInputValue = (): string | undefined => input.value;
+const getInputValue = (): string => input.value;
 
 const onClickSubmitButton = () => {
     const inputValue = getInputValue();
