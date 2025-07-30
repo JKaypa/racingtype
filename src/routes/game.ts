@@ -6,7 +6,7 @@ import { texts } from '../data.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
     const page = path.join(HTML_FILES_PATH, 'game.html');
     res.sendFile(page);
 });
