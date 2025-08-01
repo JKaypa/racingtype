@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["public/typescript"]
+  "exclude": ["public/typescript", "tests"]
 }
