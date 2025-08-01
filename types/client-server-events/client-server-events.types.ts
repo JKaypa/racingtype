@@ -24,4 +24,4 @@ type ClientToServerEvents = {
     leaveRoom: () => void;
 };
 
-export { ServerToClientEvents, ClientToServerEvents, TimerBeforeStart };
+export type { ServerToClientEvents, ClientToServerEvents, TimerBeforeStart };

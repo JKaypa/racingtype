@@ -21,4 +21,4 @@ type ClearTimerLeft = {
     secondsLeft?: number;
     timerLeft: NodeJS.Timeout;
 };
-export { ClearTimerLeft, Timer, TimerBefore, TimerLeft };
+export type { ClearTimerLeft, Timer, TimerBefore, TimerLeft };

@@ -1,4 +1,4 @@
-import { IO, RoomsWithUsers, Timer, User } from '../types.js';
+import { IO, RoomsWithUsers, Timer } from '../types.js';
 
 type AllDoneResults = Omit<Timer, 'socket'>;
 
@@ -8,4 +8,4 @@ type TimeFinishedResults = {
     roomUsers: RoomsWithUsers;
 };
 
-export { AllDoneResults, TimeFinishedResults };
+export type { AllDoneResults, TimeFinishedResults };

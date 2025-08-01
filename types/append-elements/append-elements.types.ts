@@ -14,4 +14,4 @@ type AppendRoom = Omit<Room, 'isReady'> & {
     onJoin: () => void;
 };
 
-export { AppendGame, AppendRoom, AppendUser };
+export type { AppendGame, AppendRoom, AppendUser };

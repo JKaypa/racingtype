@@ -4,4 +4,4 @@ import { ClientToServerEvents, ServerToClientEvents } from '../types.js';
 type IO = Server<ClientToServerEvents, ServerToClientEvents>;
 type SocketServer = Socket<ClientToServerEvents, ServerToClientEvents>;
 
-export { IO, SocketServer as Socket };
+export type { IO, SocketServer as Socket };

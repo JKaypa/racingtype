@@ -14,4 +14,4 @@ type MessageModal = {
     onClose?: () => void;
 };
 
-export { InputModal, ResultsModal, MessageModal };
+export type { InputModal, ResultsModal, MessageModal };

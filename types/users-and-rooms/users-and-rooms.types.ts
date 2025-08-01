@@ -14,4 +14,4 @@ type Users = Set<string>;
 
 type RoomsWithUsers = Map<string, Set<User>>;
 
-export { User, Users, Room, RoomsWithUsers };
+export type { User, Users, Room, RoomsWithUsers };

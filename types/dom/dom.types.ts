@@ -5,4 +5,4 @@ type CreateElement = {
     innerElements?: string[] | HTMLElement[];
 };
 
-export { CreateElement };
+export type { CreateElement };
