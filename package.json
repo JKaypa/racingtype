@@ -9,20 +9,22 @@
         "build": "tsc -p tsconfig.prod.json && tsc-alias && npm run bundle:prod && npm run copy",
         "copy": "cp -r public/html public/styles build/public",
         "start": "node build/src/server.js",
+        "test": "tsx --test ./tests/*",
+        "test:watch": "jest --watch --no-experimental-strip-types",
+        "test:coverage": "jest --coverage",
         "format:check": "npx prettier --check \"**/*.{ts,mjs,css,md,html}\"",
         "format:fix": "npx prettier --write \"**/*.{ts,mjs,css,md,html}\""
     },
     "dependencies": {
-        "@types/express": "5.0.1",
-        "@types/node": "24.1.0",
         "express": "5.1.0",
         "socket.io": "4.7.5",
         "socket.io-client": "^4.7.5"
     },
     "devDependencies": {
+        "@types/express": "^5.0.3",
+        "@types/node": "^24.1.0",
         "esbuild": "0.23.0",
         "prettier": "3.1.1",
-        "ts-node": "10.9.2",
         "tsc-alias": "^1.8.16",
         "tsx": "4.15.6",
         "typescript": "5.3.3"
