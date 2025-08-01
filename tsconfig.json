@@ -16,8 +16,9 @@
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "noImplicitAny": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "isolatedModules": true
     },
-    "include": ["./src/**/*", "./public/**/*", "./types/**/*"],
-    
+    "include": ["./src/**/*", "./public/**/*", "./types/**/*", "./tests/**/*"],
+
 }
