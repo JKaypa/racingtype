@@ -32,12 +32,12 @@ const isRoomReady = (roomsUsers: RoomsWithUsers, roomName: string) => {
 };
 
 const getRoomsBelowThreeUsers = (roomsUsers: RoomsWithUsers) => {
-    return roomsNotReady(roomsUsers).filter(room => room.numberOfUsers < config.MAXIMUM_USERS_FOR_ONE_ROOM);
+    return roomsNotReady(roomsUsers).filter(room => room.numberOfUsers < config.MAX_USERS_FOR_ROOM);
 };
 
 const roomsWithThreeUsers = (roomsUsers: RoomsWithUsers) => {
     return roomsNotReady(roomsUsers)
-        .filter(room => room.numberOfUsers === config.MAXIMUM_USERS_FOR_ONE_ROOM)
+        .filter(room => room.numberOfUsers === config.MAX_USERS_FOR_ROOM)
         .map(room => room.name);
 };
 

@@ -32,9 +32,9 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
         socket.on(Event.JOIN_ROOM, roomName => {
             const numberOfUsers = roomUsers.get(roomName)?.size;
             const isReady = isRoomReady(roomUsers, roomName);
-            const maxUsersForRoom = config.MAXIMUM_USERS_FOR_ONE_ROOM;
+            const { MAX_USERS_FOR_ROOM } = config;
 
-            if ((!numberOfUsers || numberOfUsers < maxUsersForRoom) && !isReady) {
+            if ((!numberOfUsers || numberOfUsers < MAX_USERS_FOR_ROOM) && !isReady) {
                 socket.join(roomName);
                 currentRoom = roomName;
 
