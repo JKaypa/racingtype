@@ -1,5 +1,5 @@
-import { it, describe, beforeEach } from 'node:test';
-import assert from 'node:assert';
+import { it, describe, beforeEach, TestContext } from 'node:test';
+import assert from 'node:assert/strict';
 import {
     emptyRooms,
     isRoomEmpty,
@@ -9,7 +9,7 @@ import {
     getRoomsBelowThreeUsers,
     roomsWithThreeUsers
 } from '~/src/socket/helpers/rooms-mapper/rooms-mapper.helper.js';
-import { User, RoomsWithUsers } from '~/types/users-and-rooms/users-and-rooms.types';
+import { User, RoomsWithUsers } from '~/types/users-and-rooms/users-and-rooms.types.js';
 
 describe('Rooms Mapper Helper Functions', () => {
     let mockRoomsWithUsers: RoomsWithUsers;
@@ -39,33 +39,35 @@ describe('Rooms Mapper Helper Functions', () => {
             assert.deepEqual(result, []);
         });
 
-        it('should map rooms with users correctly', () => {
+        it('should map rooms with users correctly', (t: TestContext) => {
+            t.plan(3);
             mockRoomsWithUsers.set('room1', new Set([user1, user2]));
             mockRoomsWithUsers.set('room2', new Set([readyUser1, readyUser2, readyUser3]));
 
             const result = roomsMapper(mockRoomsWithUsers);
 
-            assert.strictEqual(result.length, 2);
+            t.assert.strictEqual(result.length, 2);
 
-            assert.deepStrictEqual(result[0], {
+            t.assert.deepStrictEqual(result[0], {
                 name: 'room1',
                 numberOfUsers: 2,
                 isReady: false
             });
-            assert.deepStrictEqual(result[1], {
+            t.assert.deepStrictEqual(result[1], {
                 name: 'room2',
                 numberOfUsers: 3,
                 isReady: true
             });
         });
 
-        it('should handle empty room correctly', () => {
+        it('should handle empty room correctly', (t: TestContext) => {
+            t.plan(2);
             mockRoomsWithUsers.set('emptyRoom', new Set());
 
             const result = roomsMapper(mockRoomsWithUsers);
 
-            assert.strictEqual(result.length, 1);
-            assert.deepStrictEqual(result[0], {
+            t.assert.strictEqual(result.length, 1);
+            t.assert.deepStrictEqual(result[0], {
                 name: 'emptyRoom',
                 numberOfUsers: 0,
                 isReady: false
@@ -74,53 +76,54 @@ describe('Rooms Mapper Helper Functions', () => {
     });
 
     describe('roomsNotReady', () => {
-        it('should return only rooms that are not ready', () => {
+        it('should return only rooms that are not ready', (t: TestContext) => {
+            t.plan(3);
             mockRoomsWithUsers.set('notReadyRoom', new Set([user1, user2]));
             mockRoomsWithUsers.set('readyRoom', new Set([readyUser1, readyUser2]));
 
             const result = roomsNotReady(mockRoomsWithUsers);
 
-            assert.strictEqual(result.length, 1);
-            assert.strictEqual(result[0].name, 'notReadyRoom');
-            assert.strictEqual(result[0].isReady, false);
+            t.assert.strictEqual(result.length, 1);
+            t.assert.strictEqual(result[0].name, 'notReadyRoom');
+            t.assert.strictEqual(result[0].isReady, false);
         });
 
-        it('should return empty array when all rooms are ready', () => {
+        it('should return empty array when all rooms are ready', (t: TestContext) => {
             mockRoomsWithUsers.set('readyRoom1', new Set([readyUser1]));
             mockRoomsWithUsers.set('readyRoom2', new Set([readyUser2, readyUser3]));
 
             const result = roomsNotReady(mockRoomsWithUsers);
 
-            expect(result).toEqual([]);
+            t.assert.deepStrictEqual(result, []);
         });
     });
 
     describe('isRoomReady', () => {
-        it('should return true for ready room', () => {
+        it('should return true for ready room', (t: TestContext) => {
             mockRoomsWithUsers.set('readyRoom', new Set([readyUser1, readyUser2]));
 
             const result = isRoomReady(mockRoomsWithUsers, 'readyRoom');
 
-            expect(result).toBe(true);
+            t.assert.strictEqual(result, true);
         });
 
-        it('should return false for not ready room', () => {
+        it('should return false for not ready room', (t: TestContext) => {
             mockRoomsWithUsers.set('notReadyRoom', new Set([user1, user2]));
 
             const result = isRoomReady(mockRoomsWithUsers, 'notReadyRoom');
 
-            expect(result).toBe(false);
+            t.assert.strictEqual(result, false);
         });
 
-        it('should return undefined for non-existent room', () => {
+        it('should return undefined for non-existent room', (t: TestContext) => {
             const result = isRoomReady(mockRoomsWithUsers, 'nonExistentRoom');
 
-            expect(result).toBeUndefined();
+            t.assert.ok(!result);
         });
     });
 
     describe('getRoomsBelowThreeUsers', () => {
-        it('should return rooms with less than 3 users that are not ready', () => {
+        it('should return rooms with less than 3 users that are not ready', (t: TestContext) => {
             mockRoomsWithUsers.set('room1', new Set([user1])); // 1 user, not ready
             mockRoomsWithUsers.set('room2', new Set([user1, user2])); // 2 users, not ready
             mockRoomsWithUsers.set('room3', new Set([user1, user2, user3])); // 3 users, not ready
@@ -128,11 +131,11 @@ describe('Rooms Mapper Helper Functions', () => {
 
             const result = getRoomsBelowThreeUsers(mockRoomsWithUsers);
 
-            expect(result).toHaveLength(2);
-            expect(result.map(room => room.name)).toContain('room1');
-            expect(result.map(room => room.name)).toContain('room2');
-            expect(result.map(room => room.name)).not.toContain('room3');
-            expect(result.map(room => room.name)).not.toContain('readyRoom');
+            t.assert.strictEqual(result.length, 2);
+            t.assert.ok(result.map(room => room.name).includes('room1'));
+            t.assert.ok(result.map(room => room.name).includes('room2'));
+            t.assert.ok(!result.map(room => room.name).includes('room3'));
+            t.assert.ok(!result.map(room => room.name).includes('readyRoom'));
         });
     });
 
