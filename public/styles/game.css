@@ -39,6 +39,7 @@
 }
 
 #text-container {
+    padding: 40px;
     font-size: large;
 }
 
@@ -49,7 +50,7 @@
 
 .user-header {
     display: flex;
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 
 .user {
@@ -74,7 +75,7 @@
     border-radius: 10px;
 }
 
-.basic::firstletter {
+.basic::first-letter {
     text-decoration: underline;
 }
 
