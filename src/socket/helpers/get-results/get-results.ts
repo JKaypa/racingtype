@@ -32,7 +32,7 @@ const allDoneResults = ({ currentUser, io, roomName, roomUsers }: AllDoneResults
 };
 
 const timeFinishedResults = ({ io, roomName, roomUsers }: TimeFinishedResults) => {
-    results.clear;
+    results.clear();
 
     const users = [...(roomUsers.get(roomName) as Set<User>)];
     const places = users.sort((userA, userB) => userB.progress! - userA.progress!).map(user => user.username);
