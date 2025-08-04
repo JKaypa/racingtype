@@ -9,9 +9,9 @@
         "build": "tsc -p tsconfig.prod.json && tsc-alias && npm run bundle:prod && npm run copy",
         "copy": "cp -r public/html public/styles build/public",
         "start": "node build/src/server.js",
-        "test": "tsx --test ./tests/*",
-        "test:watch": "jest --watch --no-experimental-strip-types",
-        "test:coverage": "jest --coverage",
+        "test": "tsx --test",
+        "test:watch": "tsx --test --watch",
+        "test:coverage": "tsx --test --experimental-test-coverage",
         "format:check": "npx prettier --check \"**/*.{ts,mjs,css,md,html}\"",
         "format:fix": "npx prettier --write \"**/*.{ts,mjs,css,md,html}\""
     },
