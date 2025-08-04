@@ -124,6 +124,8 @@ describe('Rooms Mapper Helper Functions', () => {
 
     describe('getRoomsBelowThreeUsers', () => {
         it('should return rooms with less than 3 users that are not ready', (t: TestContext) => {
+            t.plan(5);
+
             mockRoomsWithUsers.set('room1', new Set([user1])); // 1 user, not ready
             mockRoomsWithUsers.set('room2', new Set([user1, user2])); // 2 users, not ready
             mockRoomsWithUsers.set('room3', new Set([user1, user2, user3])); // 3 users, not ready
@@ -140,65 +142,69 @@ describe('Rooms Mapper Helper Functions', () => {
     });
 
     describe('roomsWithThreeUsers', () => {
-        it('should return names of rooms with exactly 3 users that are not ready', () => {
+        it('should return names of rooms with exactly 3 users that are not ready', (t: TestContext) => {
+            t.plan(4);
+
             mockRoomsWithUsers.set('room1', new Set([user1, user2])); // 2 users
             mockRoomsWithUsers.set('room2', new Set([user1, user2, user3])); // 3 users, not ready
             mockRoomsWithUsers.set('readyRoom', new Set([readyUser1, readyUser2, readyUser3])); // 3 users, ready
 
             const result = roomsWithThreeUsers(mockRoomsWithUsers);
 
-            expect(result).toHaveLength(1);
-            expect(result).toContain('room2');
-            expect(result).not.toContain('room1');
-            expect(result).not.toContain('readyRoom');
+            t.assert.strictEqual(result.length, 1);
+            t.assert.ok(result.includes('room2'));
+            t.assert.ok(!result.includes('room1'));
+            t.assert.ok(!result.includes('readyRoom'));
         });
     });
 
     describe('emptyRooms', () => {
-        it('should return names of empty rooms', () => {
+        it('should return names of empty rooms', (t: TestContext) => {
+            t.plan(4);
+
             mockRoomsWithUsers.set('emptyRoom1', new Set());
             mockRoomsWithUsers.set('emptyRoom2', new Set());
             mockRoomsWithUsers.set('nonEmptyRoom', new Set([user1]));
 
             const result = emptyRooms(mockRoomsWithUsers);
 
-            expect(result).toHaveLength(2);
-            expect(result).toContain('emptyRoom1');
-            expect(result).toContain('emptyRoom2');
-            expect(result).not.toContain('nonEmptyRoom');
+            t.assert.strictEqual(result.length, 2);
+            t.assert.ok(result.includes('emptyRoom1'));
+            t.assert.ok(result.includes('emptyRoom2'));
+            t.assert.ok(!result.includes('nonEmptyRoom'));
         });
 
-        it('should return empty array when no rooms are empty', () => {
+        it('should return empty array when no rooms are empty', (t: TestContext) => {
             mockRoomsWithUsers.set('room1', new Set([user1]));
             mockRoomsWithUsers.set('room2', new Set([user2, user3]));
 
             const result = emptyRooms(mockRoomsWithUsers);
 
-            expect(result).toEqual([]);
+            t.assert.deepStrictEqual(result, []);
         });
     });
 
     describe('isRoomEmpty', () => {
-        it('should return true for empty room', () => {
+        it('should return true for empty room', (t: TestContext) => {
             mockRoomsWithUsers.set('emptyRoom', new Set());
 
             const result = isRoomEmpty(mockRoomsWithUsers, 'emptyRoom');
 
-            expect(result).toBe(true);
+            t.assert.strictEqual(result, true);
         });
 
-        it('should return false for non-empty room', () => {
+        it('should return false for non-empty room', (t: TestContext) => {
             mockRoomsWithUsers.set('nonEmptyRoom', new Set([user1]));
 
             const result = isRoomEmpty(mockRoomsWithUsers, 'nonEmptyRoom');
 
-            expect(result).toBe(false);
+            t.assert.strictEqual(result, false);
         });
 
-        it('should return true for non-existent room', () => {
+        it('should return true for non-existent room', (t: TestContext) => {
             const result = isRoomEmpty(mockRoomsWithUsers, 'nonExistentRoom');
 
-            expect(result).toBe(true);
+            t.assert.strictEqual(result, true);
         });
     });
 });
