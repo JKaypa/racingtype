@@ -40,26 +40,38 @@ const startingGame = ({ secondsBefore, textId }: TimerBeforeStart) => {
         timer.className = 'display-none';
 
         const highlightedText = createElement({ tagName: 'span', className: 'highlight' });
+        const nextCharacter = createElement({ tagName: 'span', className: 'next-character' });
         const basicText = createElement({ tagName: 'span', className: 'basic' });
 
-        basicText.textContent = text;
+        const firstLetter = text.charAt(0);
+        const restText = text.substring(1);
+
+        nextCharacter.textContent = firstLetter;
+        basicText.textContent = restText;
+
         textContainer.className = 'text-container';
-        textContainer.textContent = '';
-        textContainer.append(highlightedText, basicText);
+        textContainer.append(highlightedText, nextCharacter, basicText);
 
         let index = 0;
-        const range = document.createRange();
         const textLength = text.length;
+        const range = document.createRange();
 
         return (event: KeyboardEvent) => {
+            if (event.key === 'Shift') return;
+
             if (text.charAt(index) === event.key) {
+                nextCharacter.className = 'next-character';
                 ++index;
                 const progress = (index / textLength) * 100;
+
                 range.setStart(basicText.firstChild!, 0);
                 range.setEnd(basicText.firstChild!, 1);
-                highlightedText.innerText = highlightedText.innerText + range.extractContents().textContent;
+                highlightedText.innerText += nextCharacter.innerText;
+                nextCharacter.innerText = range.extractContents().textContent!;
 
                 socket.emit(Event.PROGRESSION, progress);
+            } else {
+                nextCharacter.className = 'wrong-character';
             }
         };
     }
