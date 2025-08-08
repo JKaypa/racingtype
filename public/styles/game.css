@@ -80,11 +80,11 @@
 }
 
 .next-character {
-    border-right: solid 3px green;
+    border-bottom: solid 3px green;
 }
 
 .wrong-character {
-    border-right: solid 3px red;
+    border-bottom: solid 3px red;
 }
 
 .highlight {
