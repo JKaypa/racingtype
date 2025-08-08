@@ -75,8 +75,16 @@
     border-radius: 10px;
 }
 
-.basic::first-letter {
-    text-decoration: underline;
+.basic {
+
+}
+
+.next-character {
+    border-bottom: solid 3px green;
+}
+
+.wrong-character {
+    border-bottom: solid 3px red;
 }
 
 .highlight {
