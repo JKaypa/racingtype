@@ -1,7 +1,21 @@
+:root {
+    --main-font-color: #555555;
+    --main-background-color: #03032e;
+    --main-button-background-color: rgb(37, 145, 187);
+    --main-button-border-color: #999;
+    --input-border-color: #999;
+    --input-placeholder-color: #888;
+    --white: #fff;
+}
+
 * {
     font-family: 'Open Sans', sans-serif;
     line-height: normal;
     color: var(--main-font-color);
+}
+
+body {
+    background-color: var(--main-background-color);
 }
 
 .full-screen {
@@ -12,7 +26,14 @@
 .flex-centered {
     display: flex;
     justify-content: center;
+    margin-top: 3rem;
+}
+
+.vertical-centered {
+    display: flex;
     align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 .flex {
@@ -40,15 +61,6 @@ input::placeholder {
     color: var(--input-placeholder-color);
 }
 
-:root {
-    --main-font-color: #555555;
-    --main-button-background-color: rgb(37, 145, 187);
-    --main-button-border-color: #999;
-    --input-border-color: #999;
-    --input-placeholder-color: #888;
-    --white: #fff;
-}
-
 .header {
     display: flex;
     align-items: center;
@@ -64,7 +76,7 @@ input::placeholder {
     border: 1px solid var(--main-button-border-color);
     background-color: var(--main-button-background-color);
     padding: 5px 10px;
-    margin: 0px 5px;
+    margin: 0 5px;
     border-radius: 8px;
     margin: auto;
 }
@@ -91,8 +103,8 @@ input::placeholder {
 .modal button {
     border: 1px solid var(--main-button-border-color);
     background-color: var(--main-button-background-color);
-    padding: 0px 10px;
-    margin: 0px 5px;
+    padding: 0 10px;
+    margin: 0 5px;
     border-radius: 8px;
 }
 
