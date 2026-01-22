@@ -1,7 +1,7 @@
 import { createElement } from '../helpers/dom-helper.js';
 import { AppendRoom } from '~/types/types.js';
 
-const appendRoomElement = ({ name, numberOfUsers, onJoin = () => { } }: AppendRoom) => {
+const appendRoomElement = ({ name, numberOfUsers, onJoin = () => {} }: AppendRoom) => {
     const roomsContainer = <HTMLElement>document.querySelector('#rooms-wrapper');
 
     const nameElement = createElement({
