@@ -1,7 +1,7 @@
 import { createElement } from '../helpers/dom-helper.js';
 import { AppendRoom } from '~/types/types.js';
 
-const appendRoomElement = ({ name, numberOfUsers, onJoin = () => {} }: AppendRoom) => {
+const appendRoomElement = ({ name, numberOfUsers, onJoin = () => { } }: AppendRoom) => {
     const roomsContainer = <HTMLElement>document.querySelector('#rooms-wrapper');
 
     const nameElement = createElement({
@@ -32,6 +32,12 @@ const appendRoomElement = ({ name, numberOfUsers, onJoin = () => {} }: AppendRoo
         attributes: { 'data-room-name': name },
         innerElements: [nameElement, connectedUsersElement, joinButton]
     });
+
+    const placeholder = <HTMLElement>document.querySelector('#rooms-placeholder');
+
+    if (placeholder) {
+        placeholder.remove();
+    }
 
     roomsContainer.append(roomElement);
 
