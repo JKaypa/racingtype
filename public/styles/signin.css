@@ -21,49 +21,6 @@
     transform: translateY(-1px);
 }
 
-#submit-button {
-    height: 48px;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: var(--gradient-fire);
-    border: none;
-    padding: 0 24px;
-    margin-left: 12px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    box-shadow: var(--shadow-soft);
-    position: relative;
-    overflow: hidden;
-}
-
-#submit-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: left var(--transition-slow);
-}
-
-#submit-button:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-medium), var(--glow-orange-strong);
-}
-
-#submit-button:hover::before {
-    left: 100%;
-}
-
-#submit-button:active {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-soft), var(--glow-orange);
-}
-
 /* Sign-in Page Container */
 #signin-page {
     min-height: 100vh;
