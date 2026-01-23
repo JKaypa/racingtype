@@ -75,7 +75,6 @@
 body {
     background: var(--gradient-background);
     background-attachment: fixed;
-    min-height: 100vh;
 }
 
 .full-screen {
