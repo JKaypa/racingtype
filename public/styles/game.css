@@ -271,11 +271,6 @@
     }
 }
 
-/* Character State Classes */
-.basic {
-    /* Default character state */
-}
-
 .next-character {
     border-bottom: 3px solid var(--accent-cyan);
     padding-bottom: 2px;
