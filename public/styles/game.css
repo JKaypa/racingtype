@@ -4,24 +4,21 @@
     gap: 30px;
 }
 
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 /* Quit Room Button */
-#quit-room-btn,
-.quit-room-btn {
-    padding: 12px 24px;
+.quit-btn {
     background: var(--gradient-orange);
     border: 1px solid rgba(255, 104, 66, 0.3);
     color: var(--main-color);
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    margin: 10px;
 }
 
-#quit-room-btn:hover,
-.quit-room-btn:hover {
-    background: var(--gradient-fire);
+.quit-btn:hover {
+    background: var(--main-color);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-soft), var(--glow-orange);
@@ -30,9 +27,9 @@
 /* Room Name in Game */
 #room-name,
 .room-name {
-    padding: 20px;
     font-size: 1.8rem;
     font-weight: 700;
+    font-family: var(--font-main);
     color: var(--main-color);
     text-shadow: 0 2px 15px rgba(255, 104, 66, 0.3);
 }
@@ -52,7 +49,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    box-shadow: var(--shadow-medium), var(--glow-cyan);
+    /* box-shadow: var(--shadow-medium), var(--glow-cyan); */
     backdrop-filter: blur(10px);
     transition: all var(--transition-normal);
 }
@@ -192,9 +189,9 @@
 
 /* Users Section */
 #users-wrapper {
-    padding: 20px;
-    max-height: 60vh;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  
 }
 
 .user-header {
@@ -207,7 +204,6 @@
 }
 
 .user {
-    margin: 15px 20px;
     width: 280px;
     padding: 16px;
     background: var(--gradient-card);

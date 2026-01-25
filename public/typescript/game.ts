@@ -18,7 +18,7 @@ if (!username) {
     goToSignin();
 }
 
-user.innerText = `Welcome ${username}`;
+user.innerText = username as string;
 
 let typing: ((event: KeyboardEvent) => void) | undefined;
 
