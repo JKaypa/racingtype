@@ -120,6 +120,10 @@ body {
     display: none;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 /* Enhanced Input Styling */
 input {
     width: 100%;
