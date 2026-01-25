@@ -15,6 +15,7 @@ export const appendGameElement = ({ roomName, goBackToRooms, getReady }: AppendG
     gameContainer.className = 'game-container';
     readyButton.className = 'ready-btn';
     timer.className = 'timer';
+    quitRoomButton.className = 'button quit-btn';
 
     name.innerText = roomName;
 
