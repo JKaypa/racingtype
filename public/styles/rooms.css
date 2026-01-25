@@ -140,5 +140,6 @@
     font-size: 1.5rem;
     color: var(--main-color-dark);
     font-weight: 600;
+    font-family: var(--font-main);
     margin-bottom: 8px;
 }
