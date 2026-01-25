@@ -33,6 +33,12 @@ const appendRoomElement = ({ name, numberOfUsers, onJoin = () => {} }: AppendRoo
         innerElements: [nameElement, connectedUsersElement, joinButton]
     });
 
+    const placeholder = <HTMLElement>document.querySelector('#rooms-placeholder');
+
+    if (placeholder) {
+        placeholder.remove();
+    }
+
     roomsContainer.append(roomElement);
 
     joinButton.addEventListener('click', onJoin);

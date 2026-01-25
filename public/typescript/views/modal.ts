@@ -1,14 +1,14 @@
 import { createElement } from '../helpers/dom-helper.js';
 import { ResultsModal, MessageModal, InputModal } from '~/types/types.js';
 
-const showInputModal = ({ title, onChange = () => {}, onSubmit = () => {} }: InputModal) => {
+const showInputModal = ({ title, onChange = () => { }, onSubmit = () => { } }: InputModal) => {
     const rootElement = <HTMLElement>document.querySelector('#root');
 
     const modalElement = createModalElement(title);
 
     const submitButton = createElement({
         tagName: 'button',
-        className: 'submit-btn',
+        className: 'button',
         innerElements: ['Submit']
     });
     const inputElement = <HTMLInputElement>createElement({
@@ -26,7 +26,7 @@ const showInputModal = ({ title, onChange = () => {}, onSubmit = () => {} }: Inp
     inputElement.addEventListener('change', (event: Event) => onChange((event.target as HTMLInputElement).value));
 };
 
-const showResultsModal = ({ usersSortedArray, onClose = () => {} }: ResultsModal) => {
+const showResultsModal = ({ usersSortedArray, onClose = () => { } }: ResultsModal) => {
     const rootElement = <HTMLElement>document.querySelector('#root');
 
     const modalElement = createModalElement('Results: ');
@@ -50,7 +50,7 @@ const showResultsModal = ({ usersSortedArray, onClose = () => {} }: ResultsModal
 
     const closeButton = createElement({
         tagName: 'button',
-        className: 'submit-btn',
+        className: 'button',
         attributes: { id: 'quit-results-btn' },
         innerElements: ['Close']
     });
@@ -65,14 +65,14 @@ const showResultsModal = ({ usersSortedArray, onClose = () => {} }: ResultsModal
     });
 };
 
-const showMessageModal = ({ message, onClose = () => {} }: MessageModal) => {
+const showMessageModal = ({ message, onClose = () => { } }: MessageModal) => {
     const rootElement = <HTMLElement>document.querySelector('#root');
 
     const modalElement = createModalElement(message);
 
     const closeButton = createElement({
         tagName: 'button',
-        className: 'submit-btn',
+        className: 'button',
         innerElements: ['Close']
     });
 

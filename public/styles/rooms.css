@@ -1,35 +1,145 @@
+/* Rooms Page Styling */
 #rooms-wrapper {
     display: flex;
+    flex-wrap: wrap;
+    padding: 20px 35px;
+    gap: 20px;
 }
 
-#add-room-btn {
-    padding: 10px 25px;
-    border: 1px solid dimgray;
-    background-color: var(--main-button-background-color);
-    margin: 10px 25px;
-    border-radius: 10px;
+/* Rooms Placeholder */
+#rooms-placeholder {
+    width: 100%;
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 104, 66, 0.5);
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
+/* Room Card Styling */
 .room {
-    border: 1px solid var(--main-button-border-color);
-    margin: 10px 15px;
-    padding: 15px;
+    background: var(--gradient-card);
+    border: 1px solid rgba(255, 104, 66, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    height: 200px;
-    min-width: 200px;
+    min-height: 200px;
+    min-width: 220px;
+    flex: 0 0 auto;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
 }
 
+.room::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-fire);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.room:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 104, 66, 0.4);
+    box-shadow: var(--shadow-medium), var(--glow-orange);
+}
+
+.room:hover::before {
+    opacity: 1;
+}
+
+/* Room Name */
 .room-name {
-    font-size: large;
-    font-weight: bold;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: var(--font-main);   
+    color: var(--main-color);
+    text-shadow: 0 2px 10px rgba(255, 104, 66, 0.2);
 }
 
+/* Connected Users */
+.connected-users {
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+    font-weight: 500;
+    padding: 8px 16px;
+    background: rgba(37, 145, 187, 0.1);
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+}
+
+/* Join Button */
 .join-btn {
-    background-color: var(--main-button-background-color);
-    border: 1px solid var(--main-button-border-color);
-    padding: 5px 20px;
-    border-radius: 10px;
+    background: var(--gradient-ocean);
+    border: none;
+    padding: 12px 32px;
+    border-radius: var(--radius-md);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.join-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: left var(--transition-slow);
+}
+
+.join-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium), var(--glow-cyan);
+}
+
+.join-btn:hover::before {
+    left: 100%;
+}
+
+.join-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Logo Container in Header */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-container .logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* User Section in Header */
+#user {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--main-color-dark);
+    font-weight: 600;
+    font-family: var(--font-main);
+    margin-bottom: 8px;
 }

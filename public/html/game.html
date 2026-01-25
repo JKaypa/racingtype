@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">   
         <link rel="stylesheet" href="/styles/common.css" />
         <link rel="stylesheet" href="/styles/rooms.css" />
         <link rel="stylesheet" href="/styles/game.css" />
@@ -18,23 +20,32 @@
     <body>
         <div id="root">
             <div id="rooms-page" class="full-screen">
-                <div class="header">
-                    <h1 class="title">Join Room Or Create New</h1>
-                    <div>
-                        <h2 id="user"></h2>
-                        <button id="sign-out" class="sign-out-btn">Sign out</button>
+                <header class="header">
+                    <div class="logo-container">
+                        <img src="../assets/typing-race-logo.png" alt="typing race logo"
+                             width="150px" height="150px" class="logo"/>
+                        <div>
+                            <h1 class="title title-small">Join a room or create a new one!</h1>
+                            <button id="add-room-btn" class="button">Create Room</button>
+                        </div>
                     </div>
+
+                    <div>
+                        <h1 id="user"></h1>
+                        <button id="sign-out" class="button quit-btn">Sign Out</button>
+                    </div>
+                </header>
+                <div id="rooms-wrapper">
+                    <h1 id="rooms-placeholder">Rooms will be shown here</h1>
                 </div>
-                <button id="add-room-btn" class="button">Create Room</button>
-                <div id="rooms-wrapper"></div>
             </div>
             <div id="game-page" class="flex full-screen display-none">
-                <div>
+                <aside class="sidebar">
                     <h1 id="room-name">Room name</h1>
-                    <button id="quit-room-btn">Back to Rooms</button>
+                    <button id="quit-room-btn" class="button quit-btn">Back to Rooms</button>
                     <div id="users-wrapper"></div>
-                </div>
-                <div>
+                </aside>
+                <main>
                     <div id="game-container">
                         <button id="ready-btn">READY</button>
                         <div id="timer" class="display-none">5</div>
@@ -44,7 +55,7 @@
                             <span> seconds left</span>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     </body>
