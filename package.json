@@ -7,7 +7,7 @@
         "bundle:prod": "node esbuild.config.mjs --prod",
         "dev": "npm run bundle:dev & tsx watch src/server.ts",
         "build": "tsc -p tsconfig.prod.json && tsc-alias && npm run bundle:prod && npm run copy",
-        "copy": "cp -r public/html public/styles build/public",
+        "copy": "cp -r public/html public/styles public/assets build/public",
         "start": "node build/src/server.js",
         "test": "tsx --test",
         "test:watch": "tsx --test --watch",
