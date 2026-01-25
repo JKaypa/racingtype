@@ -9,7 +9,7 @@ const onClose = (users: string[]) => {
     const none = 'display-none';
 
     timer.className = none;
-    quitRoomButton.className = 'quit-room-btn';
+    quitRoomButton.className = 'button quit-btn';
     textContainer.className = none;
     readyButton.className = 'ready-button';
     readyButton.innerText = 'Ready';
