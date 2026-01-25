@@ -11,7 +11,7 @@ const removeButtons = () => {
     const readyBtn = document.getElementById('ready-btn');
 
     if (backToRooms && readyBtn) {
-        backToRooms.className = 'display-none';
+        backToRooms.classList.add('hidden');
         readyBtn.className = 'display-none';
     }
 };
