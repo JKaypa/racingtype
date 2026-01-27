@@ -11,7 +11,9 @@ const Event = {
     PROGRESSION: 'progression',
     FINISHED: 'finished',
     RESTART: 'restart',
-    LEAVE_ROOM: 'leaveRoom'
+    LEAVE_ROOM: 'leaveRoom',
+    UPDATE_READY_USERS: 'updateReadyUsers',
+    RENDER_READY_USERS: 'renderReadyUsers'
 } as const;
 
 export { Event };
