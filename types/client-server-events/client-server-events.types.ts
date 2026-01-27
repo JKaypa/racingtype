@@ -14,6 +14,7 @@ type ServerToClientEvents = {
     progression: (progress: number, userName: string) => void;
     finished: (places: string[]) => void;
     leaveRoom: (userName: string) => void;
+    renderReadyUsers: (users: User[]) => void;
 };
 
 type ClientToServerEvents = {
@@ -22,6 +23,7 @@ type ClientToServerEvents = {
     progression: (progress: number) => void;
     restart: () => void;
     leaveRoom: () => void;
+    updateReadyUsers: () => void;
 };
 
 export type { ServerToClientEvents, ClientToServerEvents, TimerBeforeStart };
