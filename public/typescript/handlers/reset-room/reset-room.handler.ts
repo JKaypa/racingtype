@@ -1,6 +1,6 @@
 import { changeReadyStatus, setProgress } from '~typescript/views/user.js';
 
-const onClose = (users: string[]) => {
+const resetRoom = (users: string[]) => {
     const timer = <HTMLElement>document.getElementById('game-timer');
     const quitRoomButton = <HTMLButtonElement>document.getElementById('quit-room-btn');
     const barElements = <HTMLCollectionOf<HTMLElement>>document.getElementsByClassName('finished');
@@ -21,4 +21,4 @@ const onClose = (users: string[]) => {
     });
 };
 
-export { onClose };
+export { resetRoom };
