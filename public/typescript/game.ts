@@ -1,6 +1,6 @@
 import { Event } from '~/enums/events.enum.js';
 import { showInputModal, showMessageModal, showResultsModal } from './views/modal.js';
-import { showActiveRoom, startingGame, submit, updateRoomsView, onClose } from './handlers/handlers.js';
+import { showActiveRoom, startingGame, submit, updateRoomsView, resetRoom } from './handlers/handlers.js';
 import { socketConnection } from './socket.js';
 import { changeReadyStatus, removeUserElement, setProgress } from './views/user.js';
 
@@ -69,9 +69,13 @@ socket.on(Event.TIMER_LEFT, secondsLeft => {
 
 socket.on(Event.FINISHED, usersSortedArray => {
     if (typing) window.removeEventListener('keydown', typing);
-    showResultsModal({ usersSortedArray, onClose });
+    showResultsModal({ usersSortedArray, resetRoom });
 
     socket.emit(Event.RESTART);
+});
+
+socket.on(Event.RENDER_READY_USERS, users => {
+    users.forEach(({ ready, username }) => ready && changeReadyStatus({ ready, username }));
 });
 
 socket.on(Event.LEAVE_ROOM, userGone => {
