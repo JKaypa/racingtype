@@ -77,6 +77,15 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
             socket.broadcast.emit(Event.UPDATE_ROOMS, { rooms });
         });
 
+        socket.on(Event.UPDATE_READY_USERS, () => {
+            const users = roomUsers.get(currentRoom);
+            if (!users) return;
+
+            const readyUsers: Array<User> = [];
+            users.forEach(user => user.ready && readyUsers.push(user));
+            socket.emit(Event.RENDER_READY_USERS, readyUsers);
+        });
+
         socket.on(Event.LEAVE_ROOM, () => {
             socket.leave(currentRoom);
 
