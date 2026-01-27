@@ -60,7 +60,10 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
 
             io.to(currentRoom).emit(Event.GOT_READY, ready, username);
 
-            timer({ currentUser, io, roomName: currentRoom, roomUsers, socket });
+            const roomIsReady = isRoomReady(roomUsers, currentRoom);
+            if (roomIsReady) {
+                timer({ currentUser, io, roomName: currentRoom, roomUsers, socket });
+            }
         });
 
         socket.on(Event.PROGRESSION, progress => {
@@ -81,7 +84,9 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
 
             const rooms = roomsNotReady(roomUsers);
             const roomsToRemove = emptyRooms(roomUsers);
-            !roomUsers.get(currentRoom)?.size && roomUsers.delete(currentRoom);
+            if (!roomUsers.get(currentRoom)?.size) {
+                roomUsers.delete(currentRoom);
+            }
 
             socket.broadcast.emit(Event.UPDATE_ROOMS, { rooms, roomsToRemove });
             socket.to(currentRoom).emit(Event.LEAVE_ROOM, username);
@@ -90,7 +95,9 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
         socket.on('disconnect', () => {
             usernames.delete(username);
             roomUsers.get(currentRoom)?.delete(currentUser);
-            !roomUsers.get(currentRoom)?.size && roomUsers.delete(currentRoom);
+            if (!roomUsers.get(currentRoom)?.size) {
+                roomUsers.delete(currentRoom);
+            }
 
             socket.to(currentRoom).emit(Event.LEAVE_ROOM, username);
         });

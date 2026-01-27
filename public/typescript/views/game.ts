@@ -21,6 +21,6 @@ export const appendGameElement = ({ roomName, goBackToRooms, getReady }: AppendG
 
     timer.textContent = '';
 
-    quitRoomButton.addEventListener('click', goBackToRooms);
-    readyButton.addEventListener('click', getReady);
+    quitRoomButton.onclick = goBackToRooms;
+    readyButton.onclick = getReady;
 };

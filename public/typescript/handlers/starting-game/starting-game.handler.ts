@@ -37,6 +37,7 @@ const startingGame = ({ secondsBefore, textId }: TimerBeforeStart) => {
     void loadText(textId);
 
     if (!secondsBefore) {
+
         timer.className = 'display-none';
 
         const highlightedText = createElement({ tagName: 'span', className: 'highlight' });

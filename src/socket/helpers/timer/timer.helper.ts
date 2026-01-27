@@ -44,17 +44,13 @@ const timerLeft = ({ io, roomName, currentUser, roomUsers }: TimerLeft) => {
 };
 
 const timer = ({ currentUser, io, roomName, roomUsers, socket }: Timer) => {
-    const isReady = isRoomReady(roomUsers, roomName);
+    const textId = Math.floor(Math.random() * texts.length);
 
-    if (isReady) {
-        const textId = Math.floor(Math.random() * texts.length);
+    socket.broadcast.emit(Event.UPDATE_ROOMS, { roomsToRemove: [roomName] });
 
-        socket.broadcast.emit(Event.UPDATE_ROOMS, { roomsToRemove: [roomName] });
+    timerBeforeStart({ io, roomName, textId });
 
-        timerBeforeStart({ io, roomName, textId });
-
-        timerLeft({ currentUser, io, roomName, roomUsers });
-    }
+    timerLeft({ currentUser, io, roomName, roomUsers });
 };
 
 export { timer };
