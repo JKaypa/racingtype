@@ -6,7 +6,7 @@ type InputModal = {
 
 type ResultsModal = {
     usersSortedArray: string[];
-    onClose: (users: string[]) => void;
+    resetRoom: (users: string[]) => void;
 };
 
 type MessageModal = {
