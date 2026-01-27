@@ -1,7 +1,9 @@
 import { createElement } from '../helpers/dom-helper.js';
 import { ResultsModal, MessageModal, InputModal } from '~/types/types.js';
+import { socket } from '~typescript/socket.js';
+import { Event } from '~/enums/events.enum.js';
 
-const showInputModal = ({ title, onChange = () => { }, onSubmit = () => { } }: InputModal) => {
+const showInputModal = ({ title, onChange = () => {}, onSubmit = () => {} }: InputModal) => {
     const rootElement = <HTMLElement>document.querySelector('#root');
 
     const modalElement = createModalElement(title);
@@ -26,7 +28,7 @@ const showInputModal = ({ title, onChange = () => { }, onSubmit = () => { } }: I
     inputElement.addEventListener('change', (event: Event) => onChange((event.target as HTMLInputElement).value));
 };
 
-const showResultsModal = ({ usersSortedArray, onClose = () => { } }: ResultsModal) => {
+const showResultsModal = ({ usersSortedArray, resetRoom = () => {} }: ResultsModal) => {
     const rootElement = <HTMLElement>document.querySelector('#root');
 
     const modalElement = createModalElement('Results: ');
@@ -61,11 +63,12 @@ const showResultsModal = ({ usersSortedArray, onClose = () => { } }: ResultsModa
 
     closeButton.addEventListener('click', () => {
         modalElement.remove();
-        onClose(usersSortedArray);
+        resetRoom(usersSortedArray);
+        socket.emit(Event.UPDATE_READY_USERS);
     });
 };
 
-const showMessageModal = ({ message, onClose = () => { } }: MessageModal) => {
+const showMessageModal = ({ message, onClose = () => {} }: MessageModal) => {
     const rootElement = <HTMLElement>document.querySelector('#root');
 
     const modalElement = createModalElement(message);
