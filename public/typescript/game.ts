@@ -44,7 +44,7 @@ socket.on(Event.JOIN_DONE, (roomName, usersJoined) => {
 socket.on(Event.GOT_READY, (ready, userName) => {
     if (userName === username) {
         const readyButton = <HTMLButtonElement>document.getElementById('ready-btn');
-        readyButton.innerText = 'Not Ready';
+        readyButton.innerText = 'Waiting for others';
     }
 
     changeReadyStatus({ ready, username: userName });
