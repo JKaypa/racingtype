@@ -18,7 +18,8 @@ const onClickSubmitButton = () => {
     window.location.replace('/game');
 };
 
-const onKeyUp = (event: KeyboardEvent) => {
+const onKeyEnter = (event: KeyboardEvent) => {
+    console.log(event);
     const enterKeyCode = 'Enter';
     if (event.key === enterKeyCode) {
         submitButton.click();
@@ -26,4 +27,4 @@ const onKeyUp = (event: KeyboardEvent) => {
 };
 
 submitButton.addEventListener('click', onClickSubmitButton);
-window.addEventListener('keyup', onKeyUp);
+document.addEventListener('keydown', onKeyEnter);
