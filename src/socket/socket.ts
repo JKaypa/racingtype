@@ -88,17 +88,21 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
 
         socket.on(Event.LEAVE_ROOM, () => {
             socket.leave(currentRoom);
-
             roomUsers.get(currentRoom)?.delete(currentUser);
-
-            const rooms = roomsNotReady(roomUsers);
-            const roomsToRemove = emptyRooms(roomUsers);
             if (!roomUsers.get(currentRoom)?.size) {
                 roomUsers.delete(currentRoom);
             }
 
+            const rooms = roomsNotReady(roomUsers);
+            const roomsToRemove = emptyRooms(roomUsers);
             socket.broadcast.emit(Event.UPDATE_ROOMS, { rooms, roomsToRemove });
             socket.to(currentRoom).emit(Event.LEAVE_ROOM, username);
+
+            const roomIsReady = isRoomReady(roomUsers, currentRoom);
+            if (roomIsReady) {
+                timer({ currentUser, io, roomName: currentRoom, roomUsers, socket });
+            }
+
         });
 
         socket.on('disconnect', () => {
@@ -109,6 +113,7 @@ export default (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
             }
 
             socket.to(currentRoom).emit(Event.LEAVE_ROOM, username);
+            socket.leave(currentRoom);
         });
     });
 };
