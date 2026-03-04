@@ -16,7 +16,7 @@ RacerType is a real-time multiplayer typing race game built with Node.js, Expres
 2. **`npm run esbuild`** at the root
 3. **`npm run dev`** at the root
 4. Open **`http://localhost:3001/`**
-5. Deploy link: **`https://typing-race-bj19.onrender.com`**
+5. Deploy link: **`https://okay-steffi-kaypa-dev-4c35edc0.koyeb.app/signin`**
 
 May take a while for the server to respond due to free tier.
 
